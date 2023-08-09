@@ -37,7 +37,7 @@ shell 是一个普通的用户程序，从用户那里读取命令并执行它�
 
 例如：当用户输入 echo hello 时，runcmd 函数将以 echo hello 为参数被调用来执行命令，在某一个 echo 会调用 exit，浙江导致父进程从 main 当中的 wait 返回。
 
-一些常用的系统调用接口如下
+一些常用的系统调用接口如下[系统调用接口](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/master/xv6%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/Pasted%20image%2020230806191719.png)
 ![[Pasted image 20230806191719.png]]
 
 **IO和文件描述符** 
@@ -112,7 +112,7 @@ unlink("/tmp/xyz");
 ****
 该实验目的是在用户态下实现一个 sleep 函数，该函数位于[user/sleep.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/sleep.c)，只要调用系统调用函数 sleep 就可以。
 
-注意点：
+注意点：  
 	1. 命令行参数为字符串类型，sleep 函数在接收参数的时候需要利用 atoi 转换为整型，注意这里的 atoi 函数不是来自C标准库函数，而是 xv6 在[user/ulib.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/ulib.c) 中定义  
 	3. 系统调用 sleep 的申明位于[user/user.h](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/user.h)  
 	4. 用户态完成的函数需要在 Makefile UPROGS 填写，以成功编译   
@@ -132,7 +132,7 @@ unlink("/tmp/xyz");
 
 第一个进程传输数字2-35到管道。对于每一个素数都会有一个进程通过一个管道从左邻居读入，并通过另一个管道向其右邻居写入。
 
-注意点：
+注意点：  
 	1. 一开始的方法是构建一个数组去存储再发送，但这并不符合并发的概念，因此现在的逻辑是接收数据同时发送数据  
 	2. 在并发的概念下就需要考虑最终数据输出的有序性，父进程可以知道子进程何时结束(wait)，但是这样的化父进程需要输出从大到小输出素数，这样也不多。因此本方案的实现是依靠 read 函数，子进程在检测到父进程的写端关闭后输出素数
 
@@ -141,7 +141,7 @@ unlink("/tmp/xyz");
 ## find
 该实验的目的是实现 find 命令，该函数位于[user/find.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/find.c)文件中。
 
-注意点：
+注意点：  
 	1. 采用递归的方式深入子目录中  
 	2. 遇到 ‘.' 或者 ’..' 需要停止搜索  
 	3. 掌握文件存储在应用层的接口。特别是对文件夹的读取，得到的内容是一个个 entry ，其存储形式在[kernel/fs.h](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/kernel/fs.h)中定义  
@@ -161,7 +161,7 @@ cat /etc | grep root
 echo hello world | echo
 ```
 
-注意点：
+注意点：  
 	1. 使用 fork 和 exec 在每一行输入中调用该命令，在父进程中使用 wait 以等待子进程完成命令  
 	2. 要读取单个输入行，一次读取一个字符，知道出现换行符”\n”，一定要单个字符地读取  
 	3. 输入 exec 函数参数项的第一个参数没有什么影响  

@@ -26,7 +26,10 @@ xv6 没有 ps 命令，如果想要查看进程信息，可以 ctrl-p 查看，�
 ## 课程笔记
 ****
 ### 操作系统接口
-操作系统的接口需要遵守两个原则：1. 接口简单明了，便于使用 2. 为应用程序提供复杂的特性。为实现两个看似矛盾的目的，需要***依赖一些可结合的机制实现更好的通用性***。
+
+操作系统的接口需要遵守两个原则：
+	1. 接口简单明了，便于使用 
+	2. 为应用程序提供复杂的特性。为实现两个看似矛盾的目的，需要***依赖一些可结合的机制实现更好的通用性***。
 
 xv6采用传统的内核形式。内核是一个特殊的程序，一台计算机通常有多个进程，但只有一个内核，内核程序具有操纵硬件的权限，而用户程序执行的时候没有这些权限，这是硬件所实现的。
 
@@ -37,7 +40,7 @@ shell 是一个普通的用户程序，从用户那里读取命令并执行它�
 一些常用的系统调用接口如下
 ![[Pasted image 20230806191719.png]]
 
-**IO和文件描述符 
+**IO和文件描述符** 
 
 每一个进程都有一个从零开始的文件描述符的私有空间。进程从文件描述符0读取(标准输入)，将输出写入文件描述符1(标准输出)，并将错误消息写入文件描述符2(标准错误)。以下为 cat 程序的部分实现
 ```c
@@ -110,16 +113,16 @@ unlink("/tmp/xyz");
 该实验目的是在用户态下实现一个 sleep 函数，该函数位于[user/sleep.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/sleep.c)，只要调用系统调用函数 sleep 就可以。
 
 注意点：
-	1. 命令行参数为字符串类型，sleep 函数在接收参数的时候需要利用 atoi 转换为整型，注意这里的 atoi 函数不是来自C标准库函数，而是 xv6 在[user/ulib.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/ulib.c) 中定义
-	2. 系统调用 sleep 的申明位于[user/user.h](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/user.h)
-	3. 用户态完成的函数需要在 Makefile UPROGS 填写，以成功编译 
+	1. 命令行参数为字符串类型，sleep 函数在接收参数的时候需要利用 atoi 转换为整型，注意这里的 atoi 函数不是来自C标准库函数，而是 xv6 在[user/ulib.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/ulib.c) 中定义  
+	3. 系统调用 sleep 的申明位于[user/user.h](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/user.h)  
+	4. 用户态完成的函数需要在 Makefile UPROGS 填写，以成功编译   
 
 代码的具体实现可以 git show f654383..0bdddcd 或者 查看 commit 记录 sleep 实现
 ## pingpong
 该实验目的是在用户态下实现一个 pingpong 函数，该函数位于[user/pingpong.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/pingpong.c)，主要考察了进程的创建、通信等简单应用。
 
 注意点
-	1. 需要用到 pipe fork getpid read 等系统调用
+	1. 需要用到 pipe fork getpid read 等系统调用  
 	2. 用户态和内核态提供的函数都在[user/user.h](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/user.h)中申明，其用户态的函数定义在[user/ulib.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/ulib.c)，[user/printf.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/printf.c)，[user/mallloc.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/umalloc.c)
 
 代码的具体实现可以 git show 0bdddcd..af9bc9a 或者 查看 commit 记录 pingpong 实现
@@ -130,8 +133,8 @@ unlink("/tmp/xyz");
 第一个进程传输数字2-35到管道。对于每一个素数都会有一个进程通过一个管道从左邻居读入，并通过另一个管道向其右邻居写入。
 
 注意点：
-	1. 一开始的方法是构建一个数组去存储再发送，但这并不符合并发的概念，因此现在的逻辑是接收数据同时发送数据。
-	2. 在并发的概念下就需要考虑最终数据输出的有序性，父进程可以知道子进程何时结束(wait)，但是这样的化父进程需要输出从大到小输出素数，这样也不多。因此本方案的实现是依靠 read 函数，子进程在检测到父进程的写端关闭后输出素数。
+	1. 一开始的方法是构建一个数组去存储再发送，但这并不符合并发的概念，因此现在的逻辑是接收数据同时发送数据  
+	2. 在并发的概念下就需要考虑最终数据输出的有序性，父进程可以知道子进程何时结束(wait)，但是这样的化父进程需要输出从大到小输出素数，这样也不多。因此本方案的实现是依靠 read 函数，子进程在检测到父进程的写端关闭后输出素数
 
 代码的具体实现可以 git show af9bc9a..2009e10 或者 查看 commit 记录 primes 实现
 
@@ -139,9 +142,9 @@ unlink("/tmp/xyz");
 该实验的目的是实现 find 命令，该函数位于[user/find.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/find.c)文件中。
 
 注意点：
-	1. 采用递归的方式深入子目录中
-	2. 遇到 ‘.' 或者 ’..' 需要停止搜索
-	3. 掌握文件存储在应用层的接口。特别是对文件夹的读取，得到的内容是一个个 entry ，其存储形式在[kernel/fs.h](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/kernel/fs.h)中定义
+	1. 采用递归的方式深入子目录中  
+	2. 遇到 ‘.' 或者 ’..' 需要停止搜索  
+	3. 掌握文件存储在应用层的接口。特别是对文件夹的读取，得到的内容是一个个 entry ，其存储形式在[kernel/fs.h](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/kernel/fs.h)中定义  
 	4. 如何读取一个文件夹可以参考 [user/ls.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/ls.c)
 
 代码的具体实现可以 git show 2009e10..9b0ac3e 或者 查看 commit 记录 find 实现
@@ -159,8 +162,8 @@ echo hello world | echo
 ```
 
 注意点：
-	1. 使用 fork 和 exec 在每一行输入中调用该命令，在父进程中使用 wait 以等待子进程完成命令
-	2. 要读取单个输入行，一次读取一个字符，知道出现换行符”\n”，一定要单个字符地读取
-	3. 输入 exec 函数参数项的第一个参数没有什么影响
+	1. 使用 fork 和 exec 在每一行输入中调用该命令，在父进程中使用 wait 以等待子进程完成命令  
+	2. 要读取单个输入行，一次读取一个字符，知道出现换行符”\n”，一定要单个字符地读取  
+	3. 输入 exec 函数参数项的第一个参数没有什么影响  
 
 代码的具体实现可以 git show 9b0ac3e..b527749 或者 查看 commit 记录 xargs 实现

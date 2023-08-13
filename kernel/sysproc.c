@@ -95,3 +95,22 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+/* 该文件的其他系统调用函数的参数都是void，因为获取参数使用的是argcint()方法，argint()用于读取在a0-a5寄存器中传递的系统调用参数 */
+/* myproc()函数可以获取当前进程的进程控制块（PCB）*/
+/* 该函数通过在__proc结构体__中的新变量中记住其参数来实现新的系统调用 */
+uint64
+sys_trace(void)
+{
+  /* 获得传进来的参数->掩码 */
+  int mask;
+  if(argint(0, &mask) < 0)
+  {
+    return -1;
+  }
+
+  /* 把掩码赋值给进程控制块中的新变量 ---->  trace_mask */
+  myproc()->tracemask = mask;
+
+  return 0;
+}

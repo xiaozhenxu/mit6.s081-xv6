@@ -6,7 +6,7 @@
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
-
+#include "sysinfo.h"
 uint64
 sys_exit(void)
 {
@@ -118,6 +118,20 @@ sys_trace(void)
 uint64
 sys_sysinfo(void)
 {
-  printf("sysinfo\n");
+  uint64 addr;
+  struct proc *p = myproc();
+  struct sysinfo info;
+  /* 接收用户态下传出参数的地址 */
+  if(argaddr(0, &addr)<0)
+  {
+    return -1;
+  }
+  memset(&info, 0, sizeof(info));
+  acquire_freemem(&info);
+  acquire_nproc(&info);
+
+  if(copyout(p->pagetable, addr, (char *)&info, sizeof(&info)) < 0)
+    return -1;
+
   return 0;
 }

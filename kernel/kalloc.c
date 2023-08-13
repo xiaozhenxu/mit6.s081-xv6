@@ -8,7 +8,7 @@
 #include "spinlock.h"
 #include "riscv.h"
 #include "defs.h"
-
+#include "sysinfo.h"
 void freerange(void *pa_start, void *pa_end);
 
 extern char end[]; // first address after kernel.
@@ -79,4 +79,22 @@ kalloc(void)
   if(r)
     memset((char*)r, 5, PGSIZE); // fill with junk
   return (void*)r;
+}
+
+void
+acquire_freemem(struct sysinfo* info)
+{
+  struct run* r;
+
+  /* 遍历空闲链表 */
+  acquire(&kmem.lock);
+  r = kmem.freelist;
+  while(r)
+  {
+    info->freemem += 4096;
+    r = r->next;
+  }
+  release(&kmem.lock);
+
+  return;
 }

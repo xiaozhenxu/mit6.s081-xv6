@@ -1,10 +1,7 @@
 struct stat;
 struct rtcdate;
 
-struct sysinfo {
-  uint64 freemem;   // amount of free memory (bytes)
-  uint64 nproc;     // number of process
-};
+struct sysinfo;
 
 // system calls
 int fork(void);
@@ -29,7 +26,7 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int trace(int);
-int sysinfo(struct sysinfo *);
+int sysinfo(struct sysinfo * info);
 
 // ulib.c
 int stat(const char*, struct stat*);

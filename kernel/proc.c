@@ -5,7 +5,7 @@
 #include "spinlock.h"
 #include "proc.h"
 #include "defs.h"
-
+#include "sysinfo.h"
 struct cpu cpus[NCPU];
 
 struct proc proc[NPROC];
@@ -656,4 +656,17 @@ procdump(void)
     printf("%d %s %s", p->pid, state, p->name);
     printf("\n");
   }
+}
+
+void
+acquire_nproc(struct sysinfo* info)
+{
+  struct proc *p;
+
+  for(p = proc; p < &proc[NPROC]; p++) {
+    acquire(&p->lock);
+    if(p->state != UNUSED) info->nproc += 1;
+    release(&p->lock);
+  }
+  return;
 }

@@ -1,6 +1,11 @@
 struct stat;
 struct rtcdate;
 
+struct sysinfo {
+  uint64 freemem;   // amount of free memory (bytes)
+  uint64 nproc;     // number of process
+};
+
 // system calls
 int fork(void);
 int exit(int) __attribute__((noreturn));

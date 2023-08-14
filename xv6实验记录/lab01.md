@@ -38,8 +38,7 @@ shell 是一个普通的用户程序，从用户那里读取命令并执行它�
 例如：当用户输入 echo hello 时，runcmd 函数将以 echo hello 为参数被调用来执行命令，在某一个 echo 会调用 exit，浙江导致父进程从 main 当中的 wait 返回。
 
 一些常用的系统调用接口如下
-![[Pasted image 20230806191719.png]]
-
+![Fileter_transaction](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/master/xv6%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/fig/Pasted%20image%2020230806191719.png)
 **IO和文件描述符** 
 
 每一个进程都有一个从零开始的文件描述符的私有空间。进程从文件描述符0读取(标准输入)，将输出写入文件描述符1(标准输出)，并将错误消息写入文件描述符2(标准错误)。以下为 cat 程序的部分实现

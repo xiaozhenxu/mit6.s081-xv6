@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "lab01.md",
+                "file": "lab02.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "lab01.md",
+                "file": "lab02.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "lab01.md",
+                "file": "lab02.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "lab01.md"
+                "file": "lab02.md"
               }
             }
           }
@@ -148,20 +148,19 @@
   },
   "active": "c856339c9c3df495",
   "lastOpenFiles": [
-    "fig/img5.png",
-    "fig/img4.png",
+    "lab01.md",
+    "lab03.md",
     "fig/img3.png",
+    "lab02.md",
     "fig/img2.png",
     "fig/img1.png",
-    "lab02.md",
+    "fig/img5.png",
+    "fig/img4.png",
     "Pasted image 20230812174950.png",
     "Pasted image 20230812173344.png",
-    "lab01.md",
     "Pasted image 20230806191719.png",
-    "lab03.md",
     "mit6.s081-xv6/Pasted image 20230814225821.png",
     "mit6.s081-xv6/Pasted image 20230814223848.png",
-    "mit6.s081-xv6/Pasted image 20230812174950.png",
     "mit6.s081-xv6/xv6实验记录/lab03.md",
     "mit6.s081-xv6/xv6实验记录/lab02.md",
     "mit6.s081-xv6/xv6实验记录/lab01.md",

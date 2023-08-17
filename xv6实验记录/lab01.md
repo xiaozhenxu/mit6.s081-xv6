@@ -13,13 +13,13 @@ git diff origin/util
 git checkout util
 ```
 
-**运行 xv6 操作系统**
+**_运行 xv6 操作系统_**
 
 make qemu 成功后进入操作系统界面，在操作系统界面运行 ls 会输出当前根目录下的文件信息，这些文件是由 mkfs 创建的初始化文件系统。
 
 xv6 没有 ps 命令，如果想要查看进程信息，可以 ctrl-p 查看，当前是两个进程 init 进程和 sh 进程。
 
-**分数判定**
+**_分数判定_**
 
 在任一条分支下都可以通过 make grade 来检查实验结果是否通过。
 
@@ -40,7 +40,7 @@ shell 是一个普通的用户程序，从用户那里读取命令并执行它�
 一些常用的系统调用接口如下
 ![img1](fig/img1.png)
 
-**IO和文件描述符** 
+**_IO和文件描述符_** 
 
 每一个进程都有一个从零开始的文件描述符的私有空间。进程从文件描述符0读取(标准输入)，将输出写入文件描述符1(标准输出)，并将错误消息写入文件描述符2(标准错误)。以下为 cat 程序的部分实现
 ```c
@@ -84,7 +84,7 @@ write(1, "hello ", 6);
 write(fd, "world\n", 6);
 ```
 
-**文件系统**
+**_文件系统_**
 
 mknod 函数创建一个引用设备的新的设备文件，与设备文件相关联的是主设备号和次设备号( mknod 的两个参数)，它们唯一的标识了一个内核设备。当进程打开设备文件的时候，内核将使用内核设备实现 read 和 write 系统调用，而不是使用文件系统。
 
@@ -128,6 +128,7 @@ unlink("/tmp/xyz");
 代码的具体实现可以 git show 0bdddcd..af9bc9a 或者 查看 commit 记录 pingpong 实现
 
 ## primes
+****
 该实验目的是利用管道实现prime sieve(素数过滤)的并发版本，该函数位于[user/primes.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/primes.c)文件中。
 
 第一个进程传输数字2-35到管道。对于每一个素数都会有一个进程通过一个管道从左邻居读入，并通过另一个管道向其右邻居写入。
@@ -139,6 +140,7 @@ unlink("/tmp/xyz");
 代码的具体实现可以 git show af9bc9a..2009e10 或者 查看 commit 记录 primes 实现
 
 ## find
+****
 该实验的目的是实现 find 命令，该函数位于[user/find.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/find.c)文件中。
 
 注意点：  
@@ -150,6 +152,7 @@ unlink("/tmp/xyz");
 代码的具体实现可以 git show 2009e10..9b0ac3e 或者 查看 commit 记录 find 实现
 
 ## xargs
+****
 本实现的目的是实现 xargs 命令，该函数位于[user/xargs.c](https://gitee.com/xiaozhenxu/mit6.s081-xv6/blob/util/user/xargs.c)
 
 首先介绍一下 xargs 命令，Unix 命令都带有参数，而有一部分命令可以接收**标准输入**作为参数，其中 grep 便可以接收标准输入，下面的命令便是将左侧命令的标准输出转换为标准输入作为 grep 的参数

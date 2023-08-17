@@ -81,6 +81,34 @@ int
 sys_pgaccess(void)
 {
   // lab pgtbl: your code here.
+  /* 接收参数 */
+  int num;
+  uint64 buf, abits;
+  unsigned int bit_mask=0;
+  if(argint(1, &num)<0)
+    return -1;
+  if(argaddr(0, &buf)<0)
+    return -1;
+  if(argaddr(2, &abits)<0)
+    return -1;
+
+  struct proc *p = myproc();
+  pte_t* pte;
+  for(int i=0;i<num;i++)
+  {
+    pte = walk(p->pagetable, buf, 0);
+    if(*pte & PTE_A)
+    {
+      bit_mask |= 1<<i;
+      // 置为0
+      *pte &= ~PTE_A;
+    }
+    buf += PGSIZE;
+  }
+
+  // 将结果传出
+  copyout(p->pagetable, abits, (char*)&bit_mask, sizeof(bit_mask));
+
   return 0;
 }
 #endif

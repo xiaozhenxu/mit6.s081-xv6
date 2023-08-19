@@ -107,5 +107,6 @@ struct proc {
   char name[16];               // Process name (debugging)
 
   int alarm_interval;          //
-  uint64* handler;             // 处理函数的地址
+  uint64 handler;             // 处理函数的地址
+  int ticks;
 };

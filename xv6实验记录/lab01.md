@@ -1,4 +1,4 @@
-# lab: Xv6 and Unix utilities
+# Lab: Xv6 and Unix utilities
 *****
 本实验所用的代码 xv6-labs-2021 与 xv6-riscv 稍有不同，可以通过日志记录来查看具体做了哪些改动
 ```

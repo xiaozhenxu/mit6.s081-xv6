@@ -4,35 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "66e034d217de1287",
+        "id": "cedaaa52f3755f88",
         "type": "tabs",
         "children": [
           {
-            "id": "c856339c9c3df495",
+            "id": "e281ba9c171659f1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "lab03.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "03806c559a470f9b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "lab03.md",
+                "file": "lab04.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "lab03.md",
+                "file": "lab04.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "lab03.md",
+                "file": "lab04.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "lab03.md"
+                "file": "lab04.md"
               }
             }
           }
@@ -159,12 +146,14 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "03806c559a470f9b",
+  "active": "e281ba9c171659f1",
   "lastOpenFiles": [
-    "lab02.md",
     "lab03.md",
     "lab04.md",
+    "lab02.md",
     "lab01.md",
+    "Pasted image 20230819114623.png",
+    "Pasted image 20230819112157.png",
     "fig/img6.md",
     "fig/img6.png",
     "fig/img7.png",
@@ -174,8 +163,6 @@
     "fig/img5.png",
     "fig/img4.png",
     "Pasted image 20230812174950.png",
-    "Pasted image 20230812173344.png",
-    "Pasted image 20230806191719.png",
     "mit6.s081-xv6/xv6实验记录/lab03.md",
     "mit6.s081-xv6/xv6实验记录/lab02.md",
     "mit6.s081-xv6/xv6实验记录/lab01.md",

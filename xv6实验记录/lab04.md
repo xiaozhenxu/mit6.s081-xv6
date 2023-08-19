@@ -77,12 +77,12 @@ RISC-V 寄存器如下，汇编代码并不是在内存上执行，而是在寄�
 a0到a7寄存器用来作为函数的参数，如果函数有超过8个参数就需要内存了。
 
 两种类型的寄存器，Caller Saved寄存器在函数调用的时候不会自动保存(由调用者负责保存这组寄存器)，Callee Saved寄存器在函数调用的时候会自动保存(由被调用者负责保存这组寄存器的)
-![[Pasted image 20230819112157.png]]
+![img8](fig/img8.png)
 
 下面是一张简单的栈的结构图，每个区域都是一个`stack frame`，每执行一次函数调用都会产生一个`stack frame`。每次调用一个函数，函数都会为自己创建一个`stack frame`，包含了保存的寄存器，本地变量并且如果函数参数如果多与8个，额外的参数会出现在`stack`中。有两个值的位置是固定的 1)`Return address`总是出现在`stack frame`的第一位 2)指向前一个`stack frame`的指针出现在栈中的固定位置。
 
 有关`stack frame`中有两个重要的寄存器，第一个是`sp`，它指向`stack`的底部并代表了当前`stack frame`的位置；第二个是`fp`，指向当前`stack frame`的顶部
-![[Pasted image 20230819114623.png]]
+![img9](fig/img9.png)
 
 ### RISC-V GDB 调试
 在一个窗口执行`make qemu-gdb`

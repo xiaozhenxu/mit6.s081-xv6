@@ -132,3 +132,23 @@ printfinit(void)
   initlock(&pr.lock, "pr");
   pr.locking = 1;
 }
+
+void 
+backtrace()
+{
+  printf("backtrace:\n");
+  uint64 fp = r_fp();
+  uint64* frame = (uint64*)fp;
+  while(PGROUNDUP(fp) > fp && PGROUNDDOWN(fp) < fp)
+  {
+    /* 迭代停止的条件是 stack frame的地址已经指向了stack的栈顶 */
+    
+    // 获得返回地址
+    uint64 ra = frame[-1];
+    printf("%p\n",ra);
+
+    // 获得调用者函数的栈帧地址
+    fp = frame[-2];
+    frame = (uint64*)fp;
+  }
+}

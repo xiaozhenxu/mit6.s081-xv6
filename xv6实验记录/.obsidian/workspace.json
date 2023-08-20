@@ -13,7 +13,19 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "lab04.md",
+                "file": "Copy on-write.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "7a16e110227958cd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Page tables.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "lab04.md",
+                "file": "Copy on-write.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "lab04.md",
+                "file": "Copy on-write.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "lab04.md"
+                "file": "Copy on-write.md"
               }
             }
           }
@@ -148,12 +160,13 @@
   },
   "active": "e281ba9c171659f1",
   "lastOpenFiles": [
+    "System calls.md",
+    "Copy on-write.md",
+    "Traps.md",
+    "Page tables.md",
+    "Utilities.md",
     "fig/img9.png",
     "fig/img8.png",
-    "lab04.md",
-    "lab03.md",
-    "lab02.md",
-    "lab01.md",
     "fig/img6.md",
     "fig/img6.png",
     "fig/img7.png",

@@ -8,6 +8,8 @@
 #define NBUCKET 5
 #define NKEYS 100000
 
+pthread_mutex_t lock;
+
 struct entry {
   int key;
   int value;
@@ -49,10 +51,14 @@ void put(int key, int value)
   }
   if(e){
     // update the existing key.
+    pthread_mutex_lock(&lock);
     e->value = value;
+    pthread_mutex_unlock(&lock);
   } else {
     // the new is new.
+    pthread_mutex_lock(&lock);
     insert(key, value, &table[i], table[i]);
+    pthread_mutex_unlock(&lock);
   }
 
 }
@@ -105,6 +111,8 @@ main(int argc, char *argv[])
   void *value;
   double t1, t0;
 
+  /* 初始化互斥锁 */
+  pthread_mutex_init(&lock, NULL);
 
   if (argc < 2) {
     fprintf(stderr, "Usage: %s nthreads\n", argv[0]);

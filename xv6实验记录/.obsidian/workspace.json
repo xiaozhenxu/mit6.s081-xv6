@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Multithreading.md",
+                "file": "File system.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Multithreading.md",
+                "file": "File system.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Multithreading.md",
+                "file": "File system.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Multithreading.md"
+                "file": "File system.md"
               }
             }
           }
@@ -148,8 +148,10 @@
   },
   "active": "52d33bd73d105ad1",
   "lastOpenFiles": [
-    "Page tables.md",
     "Multithreading.md",
+    "File system.md",
+    "fig/img11.png",
+    "Page tables.md",
     "Traps.md",
     "Copy on-write.md",
     "System calls.md",
@@ -164,7 +166,6 @@
     "fig/img2.png",
     "fig/img1.png",
     "fig/img5.png",
-    "fig/img4.png",
     "mit6.s081-xv6/xv6实验记录/lab03.md",
     "mit6.s081-xv6/xv6实验记录/lab02.md",
     "mit6.s081-xv6/xv6实验记录/lab01.md",

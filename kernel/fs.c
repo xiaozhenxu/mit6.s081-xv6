@@ -379,14 +379,14 @@ bmap(struct inode *ip, uint bn)
 {
   uint addr, *a;
   struct buf *bp;
-
+  // 直接块   block[0-10]
   if(bn < NDIRECT){
     if((addr = ip->addrs[bn]) == 0)
       ip->addrs[bn] = addr = balloc(ip->dev);
     return addr;
   }
   bn -= NDIRECT;
-
+  //s_indirect block[11]  [0-255]
   if(bn < NINDIRECT){
     // Load indirect block, allocating if necessary.
     if((addr = ip->addrs[NDIRECT]) == 0)
@@ -394,6 +394,37 @@ bmap(struct inode *ip, uint bn)
     bp = bread(ip->dev, addr);
     a = (uint*)bp->data;
     if((addr = a[bn]) == 0){
+      a[bn] = addr = balloc(ip->dev);
+      log_write(bp);
+    }
+    brelse(bp);
+    return addr;
+  }
+
+  //d_indirect block[12]
+  bn -= NINDIRECT;
+  if(bn < NINDIRECT*NINDIRECT)
+  {
+    int mid_addr_num = bn / NINDIRECT; //间接块
+    bn = bn % NINDIRECT;
+    // Load indirect block, allocating if necessary.
+    if((addr = ip->addrs[NDIRECT+1]) == 0)
+    {
+      ip->addrs[NDIRECT+1] = addr = balloc(ip->dev);
+    }
+    bp = bread(ip->dev, addr);
+    a = (uint *)bp->data;
+    if ((addr = a[mid_addr_num]) == 0)
+    {
+      a[mid_addr_num] = addr = balloc(ip->dev);
+      log_write(bp);
+    }
+    brelse(bp);
+
+    bp = bread(ip->dev, addr);
+    a = (uint *)bp->data;
+    if ((addr = a[bn]) == 0)
+    {
       a[bn] = addr = balloc(ip->dev);
       log_write(bp);
     }
@@ -409,17 +440,17 @@ bmap(struct inode *ip, uint bn)
 void
 itrunc(struct inode *ip)
 {
-  int i, j;
+  int i, j, k;
   struct buf *bp;
-  uint *a;
-
+  uint *a, *botton_a;
+  // 11 direct block[0 ~ 10]  [0 ~ 10]
   for(i = 0; i < NDIRECT; i++){
     if(ip->addrs[i]){
       bfree(ip->dev, ip->addrs[i]);
       ip->addrs[i] = 0;
     }
   }
-
+  // 1 s_direct block[11] => [0 ~ 255]
   if(ip->addrs[NDIRECT]){
     bp = bread(ip->dev, ip->addrs[NDIRECT]);
     a = (uint*)bp->data;
@@ -431,7 +462,29 @@ itrunc(struct inode *ip)
     bfree(ip->dev, ip->addrs[NDIRECT]);
     ip->addrs[NDIRECT] = 0;
   }
-
+  // 1 d_direct block[12] => 256 * [0 ~ 255]
+  if(ip->addrs[NDIRECT+1])
+  {
+    bp = bread(ip->dev, ip->addrs[NDIRECT+1]);
+    a = (uint *)bp->data;
+    brelse(bp);
+    for(j=0; j<NINDIRECT; ++j)
+    {
+      if(a[j])
+      {
+        bp = bread(ip->dev, a[j]);
+        botton_a = (uint *)bp->data;
+        brelse(bp);
+        for(k=0; k<NINDIRECT; ++k)
+        {
+          if(botton_a[k])
+            bfree(ip->dev, botton_a[k]);
+        }
+      }
+    }
+    bfree(ip->dev, ip->addrs[NDIRECT + 1]);
+    ip->addrs[NDIRECT + 1] = 0;
+  }
   ip->size = 0;
   iupdate(ip);
 }

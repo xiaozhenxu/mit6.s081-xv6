@@ -451,3 +451,15 @@ struct inode {
  2. 除了需要在`bmap`函数中修改每个`inode`映射的`block`，还需要在`itrunc`函数中丢弃某个`inode`对于`block`的映射
 
 代码的具体实现可以查看 commit 记录 large file 若干条  
+
+## Symbolic links
+****
+本实验的目标是向`xv6`添加软链接
+
+主要实现2个接口
+	`symlink(char* target, char* path)`可以创建链接文件
+	`open`函数来访问链接文件
+
+另外注意在`open`函数中实现递归读取的问题，为了防止循环引用进入死循环，所以需要设置最大深度。
+
+代码的具体实现可以查看 commit 记录 softlink 若干条  

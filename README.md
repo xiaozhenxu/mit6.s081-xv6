@@ -1,7 +1,7 @@
 # mit6.s081: Operating System Engineering(xv6 Labs)
 ## 📚 文档说明
-- **master**分支：包含所有实验的详细技术文档和实现笔记
-- **实现**分支：每个实验的完整代码实现位于对应的分支当中
+- **master分支**：包含所有实验的详细技术文档和实现笔记
+- **实现分支**：每个实验的完整代码实现位于对应的分支当中
   
 **查看实验代码**
 ```
@@ -33,4 +33,5 @@ git checkout master
 - [多线程实验笔记](https://github.com/xiaozhenxu/mit6.s081-xv6/blob/master/xv6%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/Multithreading.md)
 - [Trap处理笔记](https://github.com/xiaozhenxu/mit6.s081-xv6/blob/master/xv6%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/Traps.md)
 - [Unix工具实现笔记](https://github.com/xiaozhenxu/mit6.s081-xv6/blob/master/xv6%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/Utilities.md)
+
 
